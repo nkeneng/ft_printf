@@ -1,33 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.c                                      :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parallels <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: snkeneng <snkeneng@student.42berlin.       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 20:34:41 by parallel          #+#    #+#             */
-/*   Updated: 2024/05/03 17:13:32 by snkeneng         ###   ########.fr       */
+/*   Created: 2024/05/03 17:58:45 by snkeneng          #+#    #+#             */
+/*   Updated: 2024/05/03 18:53:05 by snkeneng         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-#include <stdio.h>
-
-int	ft_printchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int ft_prinfstr(char *str)
-{
-	int incr;
-
-	incr = 0;
-	while (str[incr])
-	 ft_printchar(str[incr++]);
-	return (incr);
-}
+#include "ft_printf.h"
 
 int	ft_print_pointer(void *str)
 {
@@ -50,46 +33,53 @@ int	ft_print_decimal(int nb)
 	return (incr);
 }
 
+int	ft_print_unsigned_decimal(unsigned int nb)
+{
+	int	incr;
+
+	incr = 0;
+	ft_putnbr_unsigned(nb, &incr);
+	return (incr);
+}
+
+int	ft_print_hex(int nb, int _case)
+{
+	int	incr;
+
+	incr = 0;
+	if (_case == 1)
+	{
+		ft_prinfstr("0x");
+		print_base((long long)nb, "0123456789abcdef", 16, &incr);
+	}
+	else
+	{
+		ft_prinfstr("0X");
+		print_base((long long)nb, "0123456789ABCDEF", 16, &incr);
+	}
+	return (incr + 2);
+}
+
 /*
  *prints out and return the len of printed string
  * */
 int	ft_print_special(char c, va_list ptr)
 {
-	//"cspdiuxX%
 	if (c == 'c')
 		return (ft_printchar((char)va_arg(ptr, int)));
 	if (c == 's')
 		return (ft_prinfstr(va_arg(ptr, char *)));
 	if (c == 'p')
 		return (ft_print_pointer(va_arg(ptr, void *)));
-	if (c == 'd')
+	if (c == 'd' || c == 'i')
 		return (ft_print_decimal(va_arg(ptr, int)));
+	if (c == 'u')
+		return (ft_print_unsigned_decimal(va_arg(ptr, unsigned int)));
+	if (c == 'x')
+		return (ft_print_hex(va_arg(ptr, int), 1));
+	if (c == 'X')
+		return (ft_print_hex(va_arg(ptr, int), 2));
+	if (c == '%')
+		return (ft_printchar('%'));
 	return (0);
-}
-
-int	ft_printf(const char *str, ...)
-{
-	va_list	ptr;
-	int		nb_args;
-	int		incr;
-	char	*c_values;
-	int counter;
-
-	nb_args = get_conv_nb(str);
-	counter = 0;
-	c_values = (char *)malloc(nb_args);
-	if (!c_values)
-		return (0);
-	va_start(ptr, str);
-	incr = 0;
-	while (*str)
-	{
-		if (str[incr] == '%' && in_list(str[incr + 1]))
-			counter += ft_print_special(str++[incr + 1], ptr);
-		else 
-			counter += ft_printchar(str[incr]);
-		str++;
-	}
-	va_end(ptr);
-	return (counter);
 }

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: parallels <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:35:22 by parallel          #+#    #+#             */
-/*   Updated: 2024/05/03 17:10:17 by snkeneng         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:51:55 by snkeneng         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -27,4 +27,12 @@ size_t	ft_strlen(char const *str);
 void	ft_convert_to_hex(long long i);
 void	print_base(long long nb, char *base, int base_len, int *counter);
 void	ft_putnbr(int nb, int *incr);
+void	ft_putnbr_unsigned(unsigned int nb, int *incr);
+int		ft_prinfstr(char *str);
+int		ft_printchar(char c);
+int		ft_print_special(char c, va_list ptr);
+int		ft_print_hex(int nb, int _case);
+int		ft_print_unsigned_decimal(unsigned int nb);
+int		ft_print_decimal(int nb);
+int		ft_print_pointer(void *str);
 #endif
