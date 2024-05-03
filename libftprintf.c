@@ -6,7 +6,7 @@
 /*   By: parallels <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:34:41 by parallel          #+#    #+#             */
-/*   Updated: 2024/05/03 16:25:25 by snkeneng         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:13:32 by snkeneng         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,24 @@ int ft_prinfstr(char *str)
 	return (incr);
 }
 
-int ft_print_pointer(void *str)
+int	ft_print_pointer(void *str)
 {
+	long long	nbr;
 	int			incr;
-	char		buffer[20];
-	uintptr_t	address;
-	int			digit;
 
-	address = (uintptr_t)str;
-	incr = sizeof(uintptr_t) * 2 - 1;
-	buffer[incr + 1] = '\n';
-	buffer[incr + 2] = '\0';
+	nbr = (long long)str;
 	incr = 0;
-	while (incr >= 0 && address != 0)
-	{
-		digit = address & 0xF;
-		if ( digit < 10)
-			buffer[incr++] = '0' + digit;
-		else
-		 buffer[incr++] = 'A' + (digit - 10);
-		address >>= 4;
-	}
+	ft_printf("0x");
+	print_base(nbr, "0123456789abcdef", 16, &incr);
+	return (incr + 2);
+}
+
+int	ft_print_decimal(int nb)
+{
+	int	incr;
+
+	incr = 0;
+	ft_putnbr(nb, &incr);
 	return (incr);
 }
 
@@ -65,6 +62,8 @@ int	ft_print_special(char c, va_list ptr)
 		return (ft_prinfstr(va_arg(ptr, char *)));
 	if (c == 'p')
 		return (ft_print_pointer(va_arg(ptr, void *)));
+	if (c == 'd')
+		return (ft_print_decimal(va_arg(ptr, int)));
 	return (0);
 }
 
