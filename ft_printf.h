@@ -21,11 +21,8 @@
 
 int		ft_printf(const char *str, ...);
 int		in_list(char c);
-int		get_conv_nb(const char *str);
-void	fill_cvalues(const char *str, char *res);
 size_t	ft_strlen(char const *str);
-void	ft_convert_to_hex(long long i);
-void	print_base(long long nb, char *base, int base_len, int *counter);
+void	print_base(long nb, char *base, int base_len, int *counter);
 void	ft_putnbr(int nb, int *incr);
 void	ft_putnbr_unsigned(unsigned int nb, int *incr);
 int		ft_prinfstr(char *str);

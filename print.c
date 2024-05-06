@@ -17,9 +17,11 @@ int	ft_print_pointer(void *str)
 	long long	nbr;
 	int			incr;
 
-	nbr = (long long)str;
+	if (!str)
+		return (ft_prinfstr("(nil)"));
+	nbr = (long)str;
 	incr = 0;
-	ft_printf("0x");
+	ft_prinfstr("0x");
 	print_base(nbr, "0123456789abcdef", 16, &incr);
 	return (incr + 2);
 }
@@ -48,10 +50,10 @@ int	ft_print_hex(int nb, int _case)
 
 	incr = 0;
 	if (_case == 1)
-		print_base((long long)nb, "0123456789abcdef", 16, &incr);
+		print_base(nb, "0123456789abcdef", 16, &incr);
 	else
-		print_base((long long)nb, "0123456789ABCDEF", 16, &incr);
-	return (incr + 2);
+		print_base(nb, "0123456789ABCDEF", 16, &incr);
+	return (incr);
 }
 
 /*

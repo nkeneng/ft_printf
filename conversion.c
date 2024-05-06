@@ -12,22 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_swap(char *c, int size)
-{
-	int	temp;
-	int	incr;
-
-	incr = 0;
-	while (incr < size / 2)
-	{
-		temp = c[incr];
-		c[incr] = c[size - incr - 1];
-		c[size - incr - 1] = temp;
-		incr++;
-	}
-}
-
-void	print_base(long long nb, char *base, int base_len, int *counter)
+void	print_base(long nb, char *base, int base_len, int *counter)
 {
 	long	nb_long;
 
@@ -82,25 +67,4 @@ void	ft_putnbr(int nb, int *incr)
 	}
 	c = nb + '0';
 	write(1, &c, 1);
-}
-
-void	ft_convert_to_hex(long long i)
-{
-	char	*hex_chars;
-	char	c[2];
-	int		incr;
-
-	incr = 0;
-	hex_chars = "0123456789abcdef";
-	while (i > 0)
-	{
-		c[incr] = hex_chars[i % 16];
-		i = i / 16;
-		incr++;
-	}
-	if (incr <= 1)
-		c[incr++] = '0';
-	c[incr] = '\0';
-	ft_swap(c, 2);
-	write(1, c, 2);
 }

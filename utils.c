@@ -32,9 +32,14 @@ int	ft_prinfstr(char *str)
 {
 	int	incr;
 
+	if (str == NULL)
+		return (0);
 	incr = 0;
 	while (str[incr])
-		ft_printchar(str[incr++]);
+	{
+		ft_printchar(str[incr]);
+		incr++;
+	}
 	return (incr);
 }
 
@@ -48,9 +53,7 @@ int	in_list(char c)
 	while (list[incr])
 	{
 		if (list[incr] == c)
-		{
 			return (1);
-		}
 		incr++;
 	}
 	return (0);
