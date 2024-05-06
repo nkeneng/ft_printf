@@ -22,13 +22,13 @@
 int		ft_printf(const char *str, ...);
 int		in_list(char c);
 size_t	ft_strlen(char const *str);
-void	print_base(long nb, char *base, int base_len, int *counter);
+void	print_base(unsigned  long nb, char *base, int base_len, int *counter);
 void	ft_putnbr(int nb, int *incr);
 void	ft_putnbr_unsigned(unsigned int nb, int *incr);
 int		ft_prinfstr(char *str);
 int		ft_printchar(char c);
 int		ft_print_special(char c, va_list *ptr);
-int		ft_print_hex(int nb, int _case);
+int		ft_print_hex(unsigned int nb, char _case);
 int		ft_print_unsigned_decimal(unsigned int nb);
 int		ft_print_decimal(int nb);
 int		ft_print_pointer(void *str);

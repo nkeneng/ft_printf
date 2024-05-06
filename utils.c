@@ -33,7 +33,7 @@ int	ft_prinfstr(char *str)
 	int	incr;
 
 	if (str == NULL)
-		return (0);
+		return (ft_prinfstr("(null)"));
 	incr = 0;
 	while (str[incr])
 	{

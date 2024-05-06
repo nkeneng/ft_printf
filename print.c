@@ -18,8 +18,8 @@ int	ft_print_pointer(void *str)
 	int			incr;
 
 	if (!str)
-		return (ft_prinfstr("(nil)"));
-	nbr = (long)str;
+		return (ft_prinfstr("0x0"));
+	nbr = (unsigned long)str;
 	incr = 0;
 	ft_prinfstr("0x");
 	print_base(nbr, "0123456789abcdef", 16, &incr);
@@ -44,12 +44,12 @@ int	ft_print_unsigned_decimal(unsigned int nb)
 	return (incr);
 }
 
-int	ft_print_hex(int nb, int _case)
+int	ft_print_hex(unsigned int nb, char _case)
 {
 	int	incr;
 
 	incr = 0;
-	if (_case == 1)
+	if (_case == 'x')
 		print_base(nb, "0123456789abcdef", 16, &incr);
 	else
 		print_base(nb, "0123456789ABCDEF", 16, &incr);
@@ -71,10 +71,8 @@ int	ft_print_special(char c, va_list *ptr)
 		return (ft_print_decimal(va_arg(*ptr, int)));
 	if (c == 'u')
 		return (ft_print_unsigned_decimal(va_arg(*ptr, unsigned int)));
-	if (c == 'x')
-		return (ft_print_hex(va_arg(*ptr, int), 1));
-	if (c == 'X')
-		return (ft_print_hex(va_arg(*ptr, int), 2));
+	if (c == 'x' || c == 'X')
+		return (ft_print_hex(va_arg(*ptr, unsigned int), c));
 	if (c == '%')
 		return (ft_printchar('%'));
 	return (0);

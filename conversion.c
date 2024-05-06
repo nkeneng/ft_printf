@@ -12,18 +12,15 @@
 
 #include "ft_printf.h"
 
-void	print_base(long nb, char *base, int base_len, int *counter)
+void	print_base(unsigned  long nb_long, char *base, int base_len, int *counter)
 {
-	long	nb_long;
-
-	nb_long = (long)nb;
 	*counter = *counter + 1;
 	if (nb_long < 0)
 	{
 		write(1, "-", 1);
 		nb_long *= -1;
 	}
-	if (nb_long >= base_len)
+	if (nb_long >= (unsigned  long)base_len)
 	{
 		print_base(nb_long / base_len, base, base_len, counter);
 		nb_long = nb_long % base_len;
@@ -54,11 +51,11 @@ void	ft_putnbr(int nb, int *incr)
 	{
 		if (nb == -2147483648)
 		{
-			write(1, "-2147483648", 11);
+			*incr = ft_prinfstr("-2147483648");
 			return ;
 		}
 		nb *= -1;
-		write(1, "-", 1);
+		*incr += ft_printchar('-');
 	}
 	if (nb >= 10)
 	{
