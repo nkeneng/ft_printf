@@ -18,7 +18,7 @@ int	ft_print_pointer(void *str)
 	int			incr;
 
 	if (!str)
-		return (ft_prinfstr("0x0"));
+		return (ft_prinfstr("(nil)"));
 	nbr = (unsigned long)str;
 	incr = 0;
 	ft_prinfstr("0x");

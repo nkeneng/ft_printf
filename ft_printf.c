@@ -18,6 +18,8 @@ int	ft_printf(const char *str, ...)
 	int		counter;
 
 	counter = 0;
+	if (!str)
+		return (-1);
 	va_start(ptr, str);
 	while (*str)
 	{

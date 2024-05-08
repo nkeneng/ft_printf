@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	print_base(unsigned  long nb_long, char *base, int base_len, int *counter)
+void	print_base(unsigned long nb_long, char *base, int bl, int *counter)
 {
 	*counter = *counter + 1;
 	if (nb_long < 0)
@@ -20,10 +20,10 @@ void	print_base(unsigned  long nb_long, char *base, int base_len, int *counter)
 		write(1, "-", 1);
 		nb_long *= -1;
 	}
-	if (nb_long >= (unsigned  long)base_len)
+	if (nb_long >= (unsigned long)bl)
 	{
-		print_base(nb_long / base_len, base, base_len, counter);
-		nb_long = nb_long % base_len;
+		print_base(nb_long / bl, base, bl, counter);
+		nb_long = nb_long % bl;
 	}
 	write(1, &base[nb_long], 1);
 }
