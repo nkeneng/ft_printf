@@ -15,11 +15,6 @@
 void	print_base(unsigned long nb_long, char *base, int bl, int *counter)
 {
 	*counter = *counter + 1;
-	if (nb_long < 0)
-	{
-		write(1, "-", 1);
-		nb_long *= -1;
-	}
 	if (nb_long >= (unsigned long)bl)
 	{
 		print_base(nb_long / bl, base, bl, counter);
