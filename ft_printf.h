@@ -21,7 +21,7 @@
 
 int		ft_printf(const char *str, ...);
 int		in_list(char c);
-size_t	ft_strlen(char const *str);
+size_t	_ft_strlen(char const *str);
 void	print_base(unsigned long nb, char *base, int base_len, int *counter);
 void	ft_putnbr(int nb, int *incr);
 void	ft_putnbr_unsigned(unsigned int nb, int *incr);

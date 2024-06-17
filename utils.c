@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(char const *str)
+size_t	_ft_strlen(char const *str)
 {
 	size_t	incr;
 
